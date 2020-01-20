@@ -1,0 +1,6 @@
+SECRET_KEY_BASE=nFSyXdlKCXuXTXWhnmEeVnA9VLzzbpuqX3UvpdaPo8uqpgjxd+cZorH+0GobASx8
+DATABASE_URL=ecto://postgres:postgres@postgres/elixir_monitoring_prom_dev
+PORT=4000
+HOST="127.0.0.1"
+DATABASE_USER=postgres
+DATABASE_HOST=postgres

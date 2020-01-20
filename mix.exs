@@ -51,7 +51,9 @@ defmodule ElixirMonitoringProm.MixProject do
       {:prometheus_ecto, "~> 1.4.3"},
       {:prometheus_phoenix, "~> 1.3.0"},
       {:prometheus_plugs, "~> 1.1.5"},
-      {:prometheus_process_collector, "~> 1.4.3"},
+      {:prometheus_process_collector, "~> 1.4.5"},
+      # {:prometheus_process_collector, git: "https://github.com/deadtrickster/prometheus_process_collector.git", override: true},
+      # https://github.com/deadtrickster/prometheus_process_collector.git
       {:geohash, "~> 1.0.0"}
     ]
   end

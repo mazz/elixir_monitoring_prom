@@ -2,23 +2,38 @@ version: '3.7'
 
 services:
   elixir_app:
-    image: elixir:1.9.1
-    command: >
-      /bin/sh -c 'apt-get update && apt-get install -y inotify-tools &&
-      mix local.hex --force &&
-      mix local.rebar --force &&
-      mix deps.get &&
-      mix ecto.setup &&
-      mix phx.server'
+    build: .
+    image: mhanna/elixir_monitoring_prom
+    environment:
+        POSTGRES_DB: elixir_monitoring_prom_dev
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_USER: postgres
     ports:
-      - '4000:4000'
+        - '4000:4000'
+    env_file:
+      - .elixir_monitoring_prom_env
     depends_on:
       - postgres
-    working_dir: /app
-    volumes:
-      - .:/app/:ro
-      - elixir-deps:/app/deps/
-      - elixir-build:/app/_build/
+    # networks:
+    #   - db-network
+
+    # image: elixir:1.9.1-alpine
+    # command: >
+    #   /bin/sh -c 'apt-get update && apt-get install -y inotify-tools &&
+    #   mix local.hex --force &&
+    #   mix local.rebar --force &&
+    #   mix deps.get &&
+    #   mix ecto.setup &&
+    #   mix phx.server'
+    # ports:
+    #   - '4000:4000'
+    # depends_on:
+    #   - postgres
+    # working_dir: /app
+    # volumes:
+    #   - .:/app/:ro
+    #   - elixir-deps:/app/deps/
+    #   - elixir-build:/app/_build/
 
   postgres:
     image: mdillon/postgis:11-alpine
