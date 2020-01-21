@@ -14,6 +14,8 @@ RUN mix do local.hex --force, local.rebar --force
 ENV MIX_ENV=prod
 ENV SECRET_KEY_BASE=nFSyXdlKCXuXTXWhnmEeVnA9VLzzbpuqX3UvpdaPo8uqpgjxd+cZorH+0GobASx8
 ENV DATABASE_URL=ecto://postgres:postgres@postgres/elixir_monitoring_prom_dev
+ENV DATABASE_HOST=postgres
+ENV DB_USER=postgres
 
 # install mix dependencies
 COPY mix.exs mix.lock ./
@@ -54,7 +56,7 @@ WORKDIR /app
 COPY --from=build /app/_build/prod/rel/elixir_monitoring_prom .
 # COPY --from=build /app/bin/ ./bin
 COPY entrypoint.sh .
-COPY start .
+# COPY start .
 RUN chown -R nobody: /app
 USER nobody
 
@@ -62,7 +64,9 @@ ENV HOME=/app
 # CMD ["./start"]
 # CMD ["./bin/start"]
 # CMD ["bash", "/app/start"]
-CMD ["bash", "/app/start"]
+# CMD ["bash", "/app/start"]
+CMD ["bash", "/app/entrypoint.sh"]
+
 
 
 

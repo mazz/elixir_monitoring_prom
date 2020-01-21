@@ -14,7 +14,7 @@ defmodule ElixirMonitoringProm.Application do
 
     # NOTE: Only for FreeBSD, Linux and OSX (experimental)
     # https://github.com/deadtrickster/prometheus_process_collector
-    Prometheus.Registry.register_collector(:prometheus_process_collector)
+    # Prometheus.Registry.register_collector(:prometheus_process_collector)
 
     :telemetry.attach(
       "prometheus-ecto",
